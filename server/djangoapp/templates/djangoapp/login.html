@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    {% include 'bootstraplinks.html' %} 
+   
+    
+
+</head>
+
+    <body>
+   
+    {% include 'navigation.html' %} 
+<form action="{% url 'djangoapp:login' %}" method="post">
+    {% csrf_token %}
+    <div class="card">
+        <div class="card-header">
+            Login
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+              <label for="username"> User name:</label>
+              <input type ="username" class="form-control" name="username" required>
+            </div>
+            <div class="form-group">
+              <label for="userpassword"> Password:</label>
+              <input type ="password" class="form-control" name="userpassword" required>
+             </div>
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+
+    </div>
+</form>
+    </body>
+
+</html>

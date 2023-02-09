@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    {% include 'bootstraplinks.html' %} 
+   
+    
+
+</head>
+
+    <body>
+   
+    {% include 'navigation.html' %} 
+<form>
+    <div class="card">
+        <div class="card-header">
+            User Registration
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="username"> Your Name:</label>
+                <input type ="name" class="form-control">
+              </div>
+            <div class="form-group">
+              <label for="useremail"> Email:</label>
+              <input type ="email" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="userpassword"> Password:</label>
+              <input type ="password" class="form-control">
+             </div>
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </div>
+
+
+    </div>
+</form>
+    </body>
+
+</html>

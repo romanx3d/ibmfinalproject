@@ -29,6 +29,41 @@ def contact(request):
     context = {}
     if request.method == "GET":
         return render(request, 'djangoapp/contact.html', context)
+def login_page(request):
+    context = {}
+    if request.method == "GET":
+        return render(request, 'djangoapp/login.html', context)
+
+def signup(request):
+    context = {}
+    if request.method == "GET":
+        return render(request, 'djangoapp/signup.html', context)
+
+def logout_request(request):
+    context = {}
+    print ("Log out the user '{}'".format(request.user.username))
+    logout(request)
+    return redirect('djangoapp:index')
+
+def login_request(request):
+    context = {}
+    
+    if request.method=="POST":
+        username=request.POST['username']
+        password=request.POST['userpassword']
+        user=authenticate(username=username,password=password)
+
+        if user is not None:
+            login(request, user)
+            print ("Log in the user '{}'".format(request.user.username))
+            return redirect('djangoapp:index')
+        else:
+             return render (request,'djangoapp/login.html')
+
+    else:
+        return render (request,'djangoapp/login.html')
+
+    
 
 # Create a `login_request` view to handle sign in request
 # def login_request(request):

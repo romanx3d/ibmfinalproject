@@ -4,13 +4,18 @@
         <a class="navbar-brand" href="#">Dealership Review</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="https://roman2d-8000.theiadocker-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/djangoapp/#">Home</a></li>
-        <li><a href="https://roman2d-8000.theiadocker-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/djangoapp/about">About Us</a></li>
-        <li><a href="https://roman2d-8000.theiadocker-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/djangoapp/contact">Contact Us</a></li>
+        <li class="active"><a href="{% url 'djangoapp:index' %}">Home</a></li>
+        <li><a href="{% url 'djangoapp:about' %}">About Us</a></li>
+        <li><a href="{% url 'djangoapp:contact' %}">Contact Us</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        {% if user.is_authenticated %}
+        <li><a href=""><span class="glyphicon glyphicon-user"></span> Hello, {{user.username}} !</a></li>
+        <li><a href="{% url 'djangoapp:logout' %}"><span class="glyphicon glyphicon-user"></span> Sign Out</a></li>
+        {% else %}
+        <li><a href="{% url 'djangoapp:signup'%}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="{% url 'djangoapp:loginpage'%}"><span class="glyphicon glyphicon-user"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        {% endif %}
       </ul>
     </div>
   </nav>
