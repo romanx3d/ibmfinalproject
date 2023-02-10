@@ -34,10 +34,38 @@ def login_page(request):
     if request.method == "GET":
         return render(request, 'djangoapp/login.html', context)
 
-def signup(request):
+def signuppage(request):
     context = {}
     if request.method == "GET":
         return render(request, 'djangoapp/signup.html', context)
+
+def signup(request):
+    context = {}
+    
+    if request.method=="POST":
+        username=request.POST['username']
+        password=request.POST['userpassword']
+        firstname=request.POST['firstname']
+        lastname=request.POST['lastname']
+
+        user_exist = False
+        try:
+            User.objects.get(username=username)
+            user_exist = True
+        
+        except:
+            print("{} is new user".format(username))
+
+        if user_exist is not True:
+            user = User.objects.create_user(username=username, first_name=firstname,last_name=lastname,password=password)
+            login(request, user)
+            print ("Log in the user '{}'".format(request.user.username))
+            return redirect('djangoapp:index')
+        else:
+             return render (request,'djangoapp/signup.html')
+
+    else:
+        return render (request,'djangoapp/signup.html')
 
 def logout_request(request):
     context = {}
