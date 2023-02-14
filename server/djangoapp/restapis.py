@@ -1,6 +1,6 @@
 import requests
 import json
-from .models import CarDealer
+from .models import CarDealer, DealerReview
 from requests.auth import HTTPBasicAuth
 
 
@@ -38,6 +38,23 @@ def get_dealers_from_cf(url, **kwargs):
                                    st=dealer_doc["st"], zip=dealer_doc["zip"])
             results.append(dealer_obj)
     return results
+
+def get_dealer_reviews_from_cf(url, **kwargs):
+    results = []
+    json_result=get_request(url, **kwargs)
+    #print (json_result)
+
+    if json_result:
+        reviews=json_result["docs"]
+        #print(reviews)
+
+        for review in reviews:
+            review_doc=review
+            #print(review_doc["dealership"])
+            review_obj = DealerReview (dealership=review_doc["dealership"],name=review_doc["name"],purchase=review_doc["purchase"],review=review_doc["review"], purchase_date=review_doc["purchase_date"],car_make=review_doc["car_make"],car_model=review_doc["car_model"],car_year=review_doc["car_year"], id=review_doc["id"],sentiment=" ")
+            results.append(review_obj)
+    return results
+
 
 # Create a `get_request` to make HTTP GET requests
 # e.g., response = requests.get(url, params=params, headers={'Content-Type': 'application/json'},
