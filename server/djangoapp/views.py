@@ -91,20 +91,6 @@ def login_request(request):
     else:
         return render (request,'djangoapp/login.html')
 
-    
-
-# Create a `login_request` view to handle sign in request
-# def login_request(request):
-# ...
-
-# Create a `logout_request` view to handle sign out request
-# def logout_request(request):
-# ...
-
-# Create a `registration_request` view to handle sign up request
-# def registration_request(request):
-# ...
-
 # Update the `get_dealerships` view to render the index page with a list of dealerships
 def get_dealerships(request):
     if request.method == "GET":
@@ -124,8 +110,8 @@ def get_dealer_details(request, dealerid):
 
         dealer= get_dealer_reviews_from_cf(url,**({"dealerid":dealerid}) )
         
-
-        dealer_reviews=' '.join([reviews.review for reviews in dealer])
+        
+        dealer_reviews=' '.join([reviews.sentiment for reviews in dealer])
 
         return HttpResponse(dealer_reviews)
 
