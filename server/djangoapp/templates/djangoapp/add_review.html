@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     {% load static %}
     {% include 'bootstraplinks.html' %} 
-
+    {%csrf_token%}
 </head>
     <body>
      {% include 'navigation.html' %} 
      <div class="col-md-2 col-md-offset-5">
     <div style="width: 48rem;">
-    <form action="{%url 'djangoapp:add_review' 15%}" method="post">
+    <form action="{%url 'djangoapp:add_review' dealerid=dealerid%}" method="post">
+        {%csrf_token%}
         <p>Enter your review about {{dealername}}</p>
         <textarea class="form-control" id="content" name="content" rows="2" required></textarea>
         <div class="row">

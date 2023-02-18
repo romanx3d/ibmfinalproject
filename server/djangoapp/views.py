@@ -121,23 +121,46 @@ def get_dealer_details(request, dealerid, dealername):
 
 def add_review(request, dealerid):
     if request.user.is_authenticated:
-        review = {}
-        url = "https://us-south.functions.appdomain.cloud/api/v1/web/93f6f20e-a46d-4963-b799-ab699b88bd51/ibmfinal/db_post.json"
-        json_payload = {}
-        review["purchase_date"] = datetime.utcnow().isoformat()
-        review["dealership"] = dealerid
-        review["name"] = "Roma"
-        review["review"] = "this is a great car dealer"
-        json_payload["review"] = review
-        response = post_request(url, json_payload)
-        print (response)
+        if request.method == "POST":
+            review = {}
+            url = "https://us-south.functions.appdomain.cloud/api/v1/web/93f6f20e-a46d-4963-b799-ab699b88bd51/ibmfinal/db_post.json"
+            json_payload = {}
+            data = request.POST
+            purchasedate=data.get("purchasedate")
+            #print(purchasedate)
+           # print(type(purchasedate))
+            #datetime_obj=datetime.strptime(purchasedate, '%m/%d/%Y').date()
+            #datetime_obj=datetime_obj.utcnow().isoformat()
+            #print("THE DATE IS:")
+            #print(datetime_obj)
+            review["purchase_date"] =  purchasedate
+            review["dealership"] = dealerid
+            review["name"] = request.user.username
+            review["review"] = data.get("content")
+            carid=data.get("car")
+            
+            car=CarModel.objects.get(id=carid)
+            cardate=car.year 
+            print(cardate)
+            review["car_make"]=car.make.name
+            review["car_model"]=car.name
+            review["car_year"]=cardate.strftime("%Y")
+            if data.get("purchasecheck"):
+                review["purchase"]=True 
+            else:
+                review["purchase"]=False
+            json_payload["review"] = review
+            response = post_request(url, json_payload)
 
-def add_review_page (request,dealername,dealerid):
+            return redirect('djangoapp:index')
+
+def add_review_page (request,dealername,dealerid): 
     context = {}
     allcars=CarModel.objects.all().filter(id=dealerid)
 
     context["cars"]=allcars
     context["dealername"] = dealername 
+    context["dealerid"] = dealerid
     
     if request.method == "GET":
         return render(request, 'djangoapp/add_review.html', context)
