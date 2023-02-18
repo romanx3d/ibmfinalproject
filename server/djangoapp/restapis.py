@@ -55,9 +55,10 @@ def get_dealers_from_cf(url, **kwargs):
             results.append(dealer_obj)
             
         result_dict = {}
-        for x in results:
-            name = x.id
-            result_dict[name] = x
+        result_dict["dealership_list"]=results 
+        #for x in results:
+           # name = x.id
+           # result_dict[name] = x
     return result_dict
 
 def get_dealer_reviews_from_cf(url, **kwargs):
