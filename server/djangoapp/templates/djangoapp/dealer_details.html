@@ -3,16 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <title>Dealership Review</title>
-    {% load static %}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
+    
+
 </head>
 
     <body>
+        <nav class="navbar navbar-dark bg-dark navbar-expand-md"> <a class="navbar-brand" href="#">Dealership Review</a>
+            <ul class="nav navbar-nav">
+                <li class="active nav-item"><a href="{% url 'djangoapp:index' %}" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item"><a href="{% url 'djangoapp:about' %}" class="nav-link">About Us</a>
+                </li>
+                <li class="nav-item"><a href="{% url 'djangoapp:contact' %}" class="nav-link">Contact Us</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav ml-auto">{% if user.is_authenticated %}
+                <li class="nav-item"><a href class="nav-link"><span class="glyphicon glyphicon-user"></span> Hello, {{user.username}} !</a>
+                </li>
+                <li class="nav-item"><a href="{% url 'djangoapp:logout' %}" class="nav-link"><span class="glyphicon glyphicon-user"></span> Sign Out</a>
+                </li>{% else %}
+                <li class="nav-item"><a href="{% url 'djangoapp:signup'%}" class="nav-link"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                </li>
+                <li class="nav-item"><a href="{% url 'djangoapp:loginpage'%}" class="nav-link"><span class="glyphicon glyphicon-user"><span class="glyphicon glyphicon-log-in"></span> Login</span></a>
+                </li>{% endif %}</ul>
+        </nav>
+        
+        <div class="col d-flex justify-content-center">
+        <div class="card-colums">
+                 
 
-    <!--Add a nav bar here -->
+              <div class="card border-primary mb-3 bg-light" style="width: 18rem;">
+                <div class="card-header">
+                    <div class="col-md-2 px-0">
+                  <img class="img-fluid" src="{{MEDIA_URL}}/emoji/positive.png">
+                </div>
+            </div>
+                  <div class="card-body">
+                      <h5 class="card-title">Test</h5>
+                      <h5 class="card-title">Test</h5>
+                      <p class="card-text">Test</p>
+                  </div>
+              </div>
 
-    <!-- Add reviews as cards -->
+              <div class="card border-primary mb-3 bg-light" style="width: 18rem;">
+                <div class="card-header">
+                    <div class="col-md-2 px-0">
+                  <img class="img-fluid" src="{{MEDIA_URL}}/emoji/positive.png">
+                </div>
+            </div>
+                  <div class="card-body">
+                      <h5 class="card-title">Test</h5>
+                      <h5 class="card-title">Test</h5>
+                      <p class="card-text">Test</p>
+                  </div>
+              </div>
+          </div>
+        </div>
+        </div>
+
+
 
     </body>
-
 </html>

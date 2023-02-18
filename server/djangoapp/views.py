@@ -109,13 +109,13 @@ def get_dealerships(request):
 def get_dealer_details(request, dealerid):
     if request.method=="GET":
         url = "https://us-south.functions.appdomain.cloud/api/v1/web/93f6f20e-a46d-4963-b799-ab699b88bd51/ibmfinal/db_retrieve.json"
-
-        dealer= get_dealer_reviews_from_cf(url,**({"dealerid":dealerid}) )
+        context = {}
+        context= get_dealer_reviews_from_cf(url,**({"dealerid":dealerid}) )
         
         
-        dealer_reviews=' '.join([reviews.sentiment for reviews in dealer])
+        #dealer_reviews=' '.join([reviews.sentiment for reviews in dealer])
 
-        return HttpResponse(dealer_reviews)
+        return render(request, 'djangoapp/dealer_details.html', context)
 
 
 def add_review(request, dealerid):
@@ -130,7 +130,12 @@ def add_review(request, dealerid):
         json_payload["review"] = review
         response = post_request(url, json_payload)
         print (response)
-       
+
+def add_review_page (request):
+    context = {}
+    if request.method == "GET":
+        return render(request, 'djangoapp/add_review.html', context)
+
         
 
 

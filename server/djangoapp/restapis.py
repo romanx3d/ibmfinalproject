@@ -82,7 +82,9 @@ def get_dealer_reviews_from_cf(url, **kwargs):
 
             review_obj = DealerReview (dealership=review_doc["dealership"],name=review_doc["name"],purchase=review_doc["purchase"],review=review_doc["review"], purchase_date=review_doc["purchase_date"],car_make=review_doc["car_make"],car_model=review_doc["car_model"],car_year=review_doc["car_year"], id=review_doc["id"],sentiment=sentiment)
             results.append(review_obj)
-    return results
+        result_dict = {}
+        result_dict["details"]= results
+    return result_dict
 
 def post_request(url, json_payload, **kwargs):
      response = requests.post(url, params=kwargs,json=json_payload)
