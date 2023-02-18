@@ -97,12 +97,16 @@ def get_dealerships(request):
         
         url = "https://us-south.functions.appdomain.cloud/api/v1/web/93f6f20e-a46d-4963-b799-ab699b88bd51/ibmfinal/dealership_all.json"
         # Get dealers from the URL
-        dealerships = get_dealers_from_cf(url)
-        # Concat all dealer's short name
-        dealer_names = ' '.join([dealer.short_name for dealer in dealerships])
+        #context = get_dealers_from_cf(url)
+       
+        #dealer_names = ' '.join([dealer.short_name for dealer in dealerships])
         # Return a list of dealer short name
-        return HttpResponse(dealer_names)
-        #return render(request, 'djangoapp/index.html', context)
+        #return HttpResponse(dealer_names)
+        context = {1:{"id":"vasya","id2":"kroha"},2:{"id":"nyusha","id2":"sasha"}}
+        
+        #print(context[1].short_name)
+
+        return render(request, 'djangoapp/index.html', context)
 
 def get_dealer_details(request, dealerid):
     if request.method=="GET":

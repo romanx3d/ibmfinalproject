@@ -10,12 +10,30 @@
 </head>
 
     <body>
-    <!-- Remove this line the first time you edit this file -->
     
-    <!--Add a nav bar here -->
     {% include 'navigation.html' %} 
 
-    <!--Add a dealer table here -->
+    <table class="table" id="table">
+        <thead>
+            <tr>
+                <th data-field="id">ID</th>
+                <th data-field="full_name">Dealer Name</th>
+                <th data-field="city">City</th>
+                <th data-field="address">Address</th>
+                <th data-field="zip">Zip</th>
+                <th data-field="st">State</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {%for value in context.items%}
+            <tr>
+                <td>{{value.id}}</td>
+            
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
 
     </body>
 
