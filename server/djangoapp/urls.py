@@ -29,11 +29,11 @@ urlpatterns = [
 
     path(route='', view=views.get_dealerships, name='index'),
 
-    path(route='dealer/<int:dealerid>/', view=views.get_dealer_details, name='dealer_details'),
+    path(route='dealer/<int:dealerid>/<str:dealername>/', view=views.get_dealer_details, name='dealer_details'),
 
-    path(route='addreview/<int:dealerid>/', view=views.add_review, name='add_review'),
+    path(route='addreview2/<int:dealerid>/', view=views.add_review, name='add_review'),
 
-    path(route='addreview/', view=views.add_review_page, name='add_review_page'),
+    path(route='addreview/<str:dealername>/<int:dealerid>/', view=views.add_review_page, name='add_review_page'),
 
 
 

@@ -10,7 +10,7 @@
 </head>
 
     <body>
-        <nav class="navbar navbar-dark bg-dark navbar-expand-md"> <a class="navbar-brand" href="#">Dealership Review</a>
+        <nav class="navbar navbar-dark bg-dark navbar-expand-md"> <a class="navbar-brand" href="#">Review for {{dealername}}</a>
             <ul class="nav navbar-nav">
                 <li class="active nav-item"><a href="{% url 'djangoapp:index' %}" class="nav-link">Home</a>
                 </li>
@@ -22,7 +22,7 @@
             <ul class="nav navbar-nav ml-auto">{% if user.is_authenticated %}
                 <li class="nav-item"><a href class="nav-link"><span class="glyphicon glyphicon-user"></span> Hello, {{user.username}} !</a>
                 </li>
-                <li class="nav-item"><a href="{% url 'djangoapp:add_review_page' %}" class="nav-link"><span class="glyphicon glyphicon-user"></span> Add Review</a>
+                <li class="nav-item"><a href="{% url 'djangoapp:add_review_page' dealername=dealername dealerid=dealerid %}" class="nav-link"><span class="glyphicon glyphicon-user"></span> Add Review</a>
                 </li>
                 <li class="nav-item"><a href="{% url 'djangoapp:logout' %}" class="nav-link"><span class="glyphicon glyphicon-user"></span> Sign Out</a>
                 </li>{% else %}
