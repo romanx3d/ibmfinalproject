@@ -99,12 +99,10 @@ def get_dealerships(request):
         # Get dealers from the URL
         context = get_dealers_from_cf(url)
        
-        #dealer_names = ' '.join([dealer.short_name for dealer in dealerships])
-        # Return a list of dealer short name
-        #return HttpResponse(dealer_names)
-        #context = {1:{"id":"vasya","id2":"kroha"},2:{"id":"nyusha","id2":"sasha"}}
+      
+       
         #context = {"data":[{"id":1,"name":"vasya"},{"id":2,"name":"banan"}]}
-        #print(context[1].short_name)
+        
 
         return render(request, 'djangoapp/index.html', context)
 
